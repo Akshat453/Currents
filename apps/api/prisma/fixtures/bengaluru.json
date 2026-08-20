@@ -1,0 +1,87 @@
+[
+  {
+    "externalId": "fixture-indiranagar",
+    "name": "Indiranagar Current Hub",
+    "address": "100 Feet Road, Indiranagar",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "latitude": 12.9784,
+    "longitude": 77.6408,
+    "price": 18.5,
+    "amenities": ["Cafe", "Restroom", "Wi-Fi"],
+    "chargers": [
+      { "type": "CCS", "power": 60 },
+      { "type": "Type2", "power": 22 },
+      { "type": "CHAdeMO", "power": 50 }
+    ]
+  },
+  {
+    "externalId": "fixture-koramangala",
+    "name": "Koramangala Charge Court",
+    "address": "80 Feet Road, Koramangala",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "latitude": 12.9352,
+    "longitude": 77.6245,
+    "price": 16.8,
+    "amenities": ["Food court", "Restroom"],
+    "chargers": [
+      { "type": "CCS", "power": 120 },
+      { "type": "CCS", "power": 60 },
+      { "type": "Type2", "power": 22 }
+    ]
+  },
+  {
+    "externalId": "fixture-whitefield",
+    "name": "Whitefield Power Yard",
+    "address": "ITPL Main Road, Whitefield",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "latitude": 12.9847,
+    "longitude": 77.7368,
+    "price": 20,
+    "amenities": ["24/7", "Convenience store"],
+    "chargers": [
+      { "type": "CCS", "power": 150 },
+      { "type": "Type2", "power": 22 },
+      { "type": "CHAdeMO", "power": 50 },
+      { "type": "CCS", "power": 60 }
+    ]
+  },
+  {
+    "externalId": "fixture-jayanagar",
+    "name": "Jayanagar Plug Point",
+    "address": "4th Block, Jayanagar",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "latitude": 12.925,
+    "longitude": 77.5938,
+    "price": 15.5,
+    "amenities": ["Shopping", "Restroom"],
+    "chargers": [
+      { "type": "CCS", "power": 60 },
+      { "type": "Type2", "power": 11 }
+    ]
+  },
+  {
+    "externalId": "fixture-hebbal",
+    "name": "Hebbal Transit Charge",
+    "address": "Bellary Road, Hebbal",
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "country": "India",
+    "latitude": 13.0358,
+    "longitude": 77.597,
+    "price": 19.2,
+    "amenities": ["24/7", "Cafe"],
+    "chargers": [
+      { "type": "CCS", "power": 120 },
+      { "type": "CHAdeMO", "power": 50 },
+      { "type": "Type2", "power": 22 }
+    ]
+  }
+]

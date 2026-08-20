@@ -1,0 +1,33 @@
+{
+  "name": "currents",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c yellow,cyan \"npm run dev -w @currents/api\" \"npm run dev -w @currents/web\"",
+    "build": "npm run build -w @currents/shared && npm run build -w @currents/web",
+    "lint": "eslint .",
+    "test": "npm run test -w @currents/api && npm run test -w @currents/web",
+    "test:coverage": "npm run test:coverage -w @currents/api && npm run test:coverage -w @currents/web",
+    "db:generate": "npm exec --workspace=@currents/api -- prisma generate",
+    "db:migrate": "npm exec --workspace=@currents/api -- prisma migrate dev",
+    "db:seed": "npm exec --workspace=@currents/api -- prisma db seed",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-react": "^7.37.4",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2"
+  }
+}

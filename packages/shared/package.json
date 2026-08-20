@@ -1,0 +1,16 @@
+{
+  "name": "@currents/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./schemas/*": "./src/schemas/*.js"
+  },
+  "scripts": {
+    "build": "node -e \"import('./src/index.js')\""
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  }
+}

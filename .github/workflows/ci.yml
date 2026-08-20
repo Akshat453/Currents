@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  workflow_call:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Install, lint, test, build
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15-alpine
+        env:
+          POSTGRES_DB: currents_test
+          POSTGRES_USER: currents
+          POSTGRES_PASSWORD: currents
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U currents"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://currents:currents@localhost:5432/currents_test?schema=public
+      JWT_SECRET: ci-only-secret-at-least-thirty-two-characters
+      PAYMENT_PROVIDER: fake
+      RUN_JOBS: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate Prisma client
+        run: npm run db:generate
+
+      - name: Prepare test database
+        run: npx prisma db push --schema apps/api/prisma/schema.prisma
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build web application
+        run: npm run build
+
+      - name: Build API image
+        run: docker build -f apps/api/Dockerfile .
+
+      - name: Build web image
+        run: docker build -f apps/web/Dockerfile .
