@@ -55,13 +55,6 @@ Create the key in the GroqCloud console. If Groq times out, rejects the request,
 
 ## Deployment
 
-The web app is configured for Vercel and the API for Railway. Railway should run `npm run db:deploy -w @currents/api` during release and use `/ready` for readiness checks. Keep the API at one replica while in-process scheduled jobs are enabled.
+The GitHub Actions workflows run CI on pull requests and pushes to `main`. The Docker workflow builds and publishes API and web images to GitHub Container Registry, tagged with both the commit SHA and `latest`. Deploy those images from your chosen container platform and run `npm run db:deploy -w @currents/api` before starting the API.
 
-The `main` branch deployment workflow runs CI first, then deploys the API with Railway and the web app with Vercel. It also supports manual runs from the GitHub Actions tab. Create a GitHub `production` environment and add these secrets:
-
-- `RAILWAY_TOKEN`, `RAILWAY_PROJECT_ID`, and `RAILWAY_SERVICE`
-- `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID`
-
-Configure the production `VITE_API_URL`, `VITE_SOCKET_URL`, and API secrets in the Vercel and Railway project settings. The Railway service must have the repository root as its source and use `railway.toml`; Vercel should use `apps/web` as its project root.
-
-Rollback by redeploying the previous API image and Vercel deployment. Prisma migrations must remain forward-compatible; never roll back by deleting production data.
+Keep the API at one replica while in-process scheduled jobs are enabled. Prisma migrations must remain forward-compatible; never roll back by deleting production data.
